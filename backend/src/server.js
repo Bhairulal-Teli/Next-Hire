@@ -1,28 +1,38 @@
-import express from 'express';
+import express from "express";
 import path from "path";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-import { ENV } from './lib/env.js';
+import { ENV } from "./lib/env.js";
+import { connectDB } from "./lib/db.js";
 
-dotenv.config();
+dotenv.config({quiet: true});
 
 const app = express();
 const __dirname = path.resolve();
 
-app.get('/health', (req, res) => {
-    res.status(200).json({msg: "success from api."})
+app.get("/health", (req, res) => {
+  res.status(200).json({ msg: "success from api." });
 });
 
 const port = process.env.PORT || 3002;
 
-if(ENV.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/dist')))
+if (ENV.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get("/{*any}", (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend', "dist", "index.html"));
-    })
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
-app.listen(port, () => {
-    console.log("Server is running on Port:",port)
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(port, () => {
+      console.log("Server is running on Port:", port);
+    });
+  } catch (error) {
+    console.log("Error starting the server.", error)
+  }
+};
+
+startServer();
