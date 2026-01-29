@@ -72,7 +72,7 @@ export async function getMyRecentSessions(req, res) {
       .sort({ createdAt: -1 })
       .limit(20);
 
-    res.status(201).json({ sessions });
+    res.status(200).json({ sessions });
   } catch (error) {
     console.log("Error in getMyRecentSessions controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
