@@ -26,8 +26,9 @@ export const sessionApi = {
         return response.data;
     },
 
-    endSession: async () => {
-        const response = await axiosInstance.get(`/sessions/${id}/end`);
+    endSession: async (id) => {
+        console.log("Inititated");
+        const response = await axiosInstance.post(`/sessions/${id}/end`);
         return response.data;
     },
 
