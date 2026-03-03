@@ -10,7 +10,7 @@ import OutputPanel from "../components/OutputPanel.jsx";
 import CodeEditorPanel from "../components/CodeEditorPanel.jsx";
 
 import { PROBLEMS } from "../data/problems.js";
-import { executeCode } from "../lib/piston.js";
+import { executeCode } from "../lib/judge0.js";
 
 function ProblemPage() {
   const { id } = useParams();
