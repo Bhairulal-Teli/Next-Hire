@@ -10,7 +10,7 @@ import CodeEditorPanel from "../components/CodeEditorPanel";
 import OutputPanel from "../components/OutputPanel";
 import VideoCallUI from "../components/VideoCallUI";
 
-import { executeCode } from "../lib/piston";
+import { executeCode } from "../lib/judge0";
 import { getDifficultyBadgeClass } from "../lib/utils";
 import { PROBLEMS } from "../data/problems";
 import { useEndSession, useJoinSession, useSessionById } from "../hooks/useSessions";
